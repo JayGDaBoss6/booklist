@@ -74,7 +74,6 @@ class Store{
        const books = Store.getBooks();
        books.push(book);
        localStorage.setItem('books', JSON.stringify(books));
-
     }
    static removeBook(){
 
@@ -101,8 +100,10 @@ class Store{
     } else {
      // Add book to book list
      ui.addBookToList(book);
-    //  // Add book to local storage
-    //  Store.addBook(book);
+
+     // Add book to local storage
+     Store.addBook(book);
+
      ui.showAlert("book added", "success");
      //clear fields
      ui.clearFields();
