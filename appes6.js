@@ -55,30 +55,6 @@ clearFields(){
 }
 }
 
-// Local Storage Class
-class Store{
-   static getBooks(){
-       let books;
-       if (localStorage.getItem('books') === null){
-           let books = [];
-       }else{
-           books = JSON.parse(localStorage.getItem('books'));
-       }
-       return books;
-
-    }
-   static displayBooks(){
-
-    }
-   static addBook(book){
-       const books = Store.getBooks();
-       books.push(book);
-       localStorage.setItem('books', JSON.stringify(books));
-    }
-   static removeBook(){
-
-    }
-}
 
    //Event Listeners
    document.getElementById("book-form").addEventListener("submit", function(e) {
@@ -100,10 +76,6 @@ class Store{
     } else {
      // Add book to book list
      ui.addBookToList(book);
-
-     // Add book to local storage
-     Store.addBook(book);
-
      ui.showAlert("book added", "success");
      //clear fields
      ui.clearFields();
@@ -118,3 +90,4 @@ class Store{
     ui.deleteBook(e.target);
      e.preventDefault();
       })
+    
