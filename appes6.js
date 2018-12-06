@@ -1,13 +1,11 @@
-
 // Local Storage Class
-
 class Store {
     static getBooks(){
         let books;
-        if(localStorage.getItem('books' === null)){
-            let books = [];
+        if(localStorage.getItem('books') === null){
+             books = [];
         }else{
-            books = JSON.parse(localStorage.getItem('books'))
+            books = JSON.parse(localStorage.getItem('books'));
 
         }
         return books;
@@ -17,7 +15,7 @@ class Store {
 
     }
     static addBook(book){
-        const books = this.getBooks();
+        let books = Store.getBooks();
         books.push(book);
         localStorage.setItem('books', JSON.stringify(books))
     }
@@ -106,6 +104,7 @@ clearFields(){
      ui.addBookToList(book);
      // Add to local storage
      Store.addBook(book);
+
      ui.showAlert("book added", "success");
      //clear fields
      ui.clearFields();
