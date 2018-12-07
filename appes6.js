@@ -12,7 +12,12 @@ class Store {
 
     }
     static displayBooks(){
+        const books = Store.getBooks();
+        books.forEach(function(book){
+            const ui = new UI();
+            ui.addBookToList(book);
 
+        })
     }
     static addBook(book){
         let books = Store.getBooks();
@@ -20,10 +25,20 @@ class Store {
         localStorage.setItem('books', JSON.stringify(books))
     }
 
-    static removeBook(){
+    static removeBook(isbn){
+        let books = Store.getBooks();
+        books.forEach(function(book, index){
+            if(book.isbn === isbn){
+                books.splice(index, 1);
+            }
 
-    }
-};
+
+    })
+    localStorage.setItem('books', JSON.stringify(books))}
+
+
+}
+
 class Book{
     constructor(title, author, isbn){
         this.title = title;
@@ -82,6 +97,10 @@ clearFields(){
 }
 
 
+//DOM Load Event
+document.addEventListener('DOMContentLoaded',Store.displayBooks)
+
+
    //Event Listeners
    document.getElementById("book-form").addEventListener("submit", function(e) {
     //Get form values
@@ -117,5 +136,7 @@ clearFields(){
    document.querySelector("table").addEventListener("click", function(e){
     const ui = new UI();
     ui.deleteBook(e.target);
+    Store.removeBook(e.target.parentElement.previousElementSibling.textContent);
+
      e.preventDefault();
       })
