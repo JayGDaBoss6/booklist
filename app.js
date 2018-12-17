@@ -11,7 +11,7 @@ function Book(title, author, isbn) {
    // add book to list
    UI.prototype.addBookToList = function(book) {
     const list = document.getElementById("book-list");
-    const row = document.createElement("tr");
+    const row = document.createElement('tr');
     // insert columns
     row.innerHTML = `
    <td>${book.title}</td>
